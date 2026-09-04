@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 33% 93%; /* cream */
+    --foreground: 220 25% 20%;
+  }
+
+  body {
+    @apply bg-cream text-navy antialiased;
+  }
+}
