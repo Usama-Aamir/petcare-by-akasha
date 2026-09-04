@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase";
 
 const whyUsFeatures = [
   {
@@ -65,30 +66,18 @@ const whyUsFeatures = [
   },
 ];
 
-const featuredProducts = [
-  {
-    name: "Premium Dry Cat Food",
-    price: "Rs. 2,500",
-    desc: "High-protein formula for adult cats",
-  },
-  {
-    name: "Dog Grooming Kit",
-    price: "Rs. 1,800",
-    desc: "Brush, comb, and nail clipper set",
-  },
-  {
-    name: "Rabbit Hay & Seed Mix",
-    price: "Rs. 900",
-    desc: "Daily nutrition for small pets",
-  },
-  {
-    name: "Cat Litter — 10kg",
-    price: "Rs. 1,200",
-    desc: "Odor-control clumping litter",
-  },
-];
+function formatPrice(price: number) {
+  return `Rs. ${price.toLocaleString("en-PK")}`;
+}
 
-export default function HomePage() {
+export default async function HomePage() {
+  const supabase = await createClient();
+  const { data: featuredProducts } = await supabase
+    .from("products")
+    .select("id, name, description, price, image_url")
+    .eq("is_active", true)
+    .order("created_at", { ascending: true })
+    .limit(6);
   return (
     <div className="min-h-screen bg-cream">
       {/* ===== HERO ===== */}
@@ -170,19 +159,29 @@ export default function HomePage() {
           </h2>
           <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-sage-light" />
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {featuredProducts.map((product) => (
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+            {featuredProducts?.map((product) => (
               <div
-                key={product.name}
+                key={product.id}
                 className="flex flex-col rounded-2xl bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="mb-3 aspect-square w-full rounded-xl bg-cream-alt" />
+                {product.image_url ? (
+                  <Image
+                    src={product.image_url}
+                    alt={product.name}
+                    width={400}
+                    height={400}
+                    className="mb-3 aspect-square w-full rounded-xl object-cover"
+                  />
+                ) : (
+                  <div className="mb-3 aspect-square w-full rounded-xl bg-cream-alt" />
+                )}
                 <h3 className="text-sm font-semibold text-navy">
                   {product.name}
                 </h3>
-                <p className="mt-1 text-xs text-navy/50">{product.desc}</p>
+                <p className="mt-1 text-xs text-navy/50">{product.description}</p>
                 <p className="mt-2 text-sm font-bold text-sage-deep">
-                  {product.price}
+                  {formatPrice(product.price)}
                 </p>
               </div>
             ))}
