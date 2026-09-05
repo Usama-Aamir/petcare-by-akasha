@@ -1,3 +1,5 @@
+import BookingsManager from "@/components/admin-bookings";
+
 export default function AdminBookingsPage() {
-  return null;
+  return <BookingsManager />;
 }
