@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Cat } from "lucide-react";
 import { createClient } from "@/lib/supabase";
 
 const whyUsFeatures = [
@@ -87,13 +86,6 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-sage opacity-30 blur-3xl" />
         <div className="pointer-events-none absolute -right-16 top-10 h-64 w-64 rounded-full bg-sage-light opacity-25 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-cream-alt opacity-60 blur-2xl" />
-
-        {/* Wandering cat mascot */}
-        <div className="cat-mascot pointer-events-none absolute top-6 left-0 z-0 w-full">
-          <div className="cat-mascot-inner mx-auto w-fit">
-            <Cat className="h-16 w-16 text-sage-deep/40 sm:h-20 sm:w-20" strokeWidth={1.5} />
-          </div>
-        </div>
 
         <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 py-20 text-center sm:py-28">
           <Image
