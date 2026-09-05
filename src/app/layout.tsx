@@ -3,6 +3,8 @@ import { Poppins, Caveat } from "next/font/google";
 import "./globals.css";
 import ChatBubble from "@/components/chat-bubble";
 import EmergencyButton from "@/components/emergency-button";
+import Header from "@/components/header";
+import { CartProvider } from "@/components/cart-context";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,9 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${caveat.variable} font-sans`}>
-        {children}
-        <ChatBubble />
-        <EmergencyButton />
+        <CartProvider>
+          <Header />
+          {children}
+          <ChatBubble />
+          <EmergencyButton />
+        </CartProvider>
       </body>
     </html>
   );
