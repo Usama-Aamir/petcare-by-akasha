@@ -5,6 +5,7 @@ import ChatBubble from "@/components/chat-bubble";
 import EmergencyButton from "@/components/emergency-button";
 import Header from "@/components/header";
 import CatMascot from "@/components/cat-mascot";
+import SiteChrome from "@/components/site-chrome";
 import { CartProvider } from "@/components/cart-context";
 
 const poppins = Poppins({
@@ -35,10 +36,14 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${caveat.variable} font-sans`}>
         <CartProvider>
           <Header />
-          <CatMascot />
+          <SiteChrome>
+            <CatMascot />
+          </SiteChrome>
           {children}
-          <ChatBubble />
-          <EmergencyButton />
+          <SiteChrome>
+            <ChatBubble />
+            <EmergencyButton />
+          </SiteChrome>
         </CartProvider>
       </body>
     </html>
