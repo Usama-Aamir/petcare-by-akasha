@@ -12,3 +12,54 @@
     @apply bg-cream text-navy antialiased;
   }
 }
+
+@keyframes cat-wander {
+  0% {
+    transform: translateX(5%) scaleX(-1);
+  }
+  48% {
+    transform: translateX(95%) scaleX(-1);
+  }
+  50% {
+    transform: translateX(95%) scaleX(1);
+  }
+  98% {
+    transform: translateX(5%) scaleX(1);
+  }
+  100% {
+    transform: translateX(5%) scaleX(-1);
+  }
+}
+
+@keyframes cat-bob {
+  0%, 100% {
+    translateY: 0;
+  }
+  50% {
+    translateY: -6px;
+  }
+}
+
+@keyframes cat-bob-internal {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.cat-mascot {
+  animation: cat-wander 18s ease-in-out infinite;
+}
+
+.cat-mascot-inner {
+  animation: cat-bob-internal 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-mascot,
+  .cat-mascot-inner {
+    animation: none;
+  }
+}
