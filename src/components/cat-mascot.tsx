@@ -30,7 +30,13 @@ export default function CatMascot() {
   };
 
   return (
-    <div className="cat-mascot pointer-events-none fixed top-20 left-0 z-50 h-14 w-20 sm:top-24 sm:h-16 sm:w-24">
+    <div
+      className="cat-mascot pointer-events-none fixed top-20 left-0 z-50 h-14 w-20 sm:top-24 sm:h-16 sm:w-24"
+      style={{
+        animation: "cat-wander 60s ease-in-out infinite",
+        willChange: "transform",
+      }}
+    >
       <div className="cat-mascot-bob relative h-full w-full">
         <button
           onClick={handleMeow}
