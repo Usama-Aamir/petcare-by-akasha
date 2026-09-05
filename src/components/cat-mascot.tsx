@@ -30,16 +30,16 @@ export default function CatMascot() {
   };
 
   return (
-    <div className="cat-mascot pointer-events-none fixed top-16 left-0 z-30">
-      <div className="cat-mascot-bob relative">
+    <div className="cat-mascot pointer-events-none fixed top-14 left-0 z-30 h-14 w-20 sm:h-16 sm:w-24">
+      <div className="cat-mascot-bob relative h-full w-full">
         <button
           onClick={handleMeow}
-          className="pointer-events-auto cursor-pointer select-none"
+          className="pointer-events-auto flex h-full w-full cursor-pointer items-center justify-center"
           aria-label="Meow"
         >
           <svg
             viewBox="0 0 100 70"
-            className="h-14 w-20 sm:h-16 sm:w-24"
+            className="h-12 w-16 sm:h-16 sm:w-24"
             fill="none"
             stroke="#3F6B57"
             strokeWidth="2.5"
