@@ -18,10 +18,10 @@
     transform: translateX(0) scaleX(-1);
   }
   48% {
-    transform: translateX(calc(100vw - 100px)) scaleX(-1);
+    transform: translateX(var(--cat-travel, calc(100vw - 100px))) scaleX(-1);
   }
   50% {
-    transform: translateX(calc(100vw - 100px)) scaleX(1);
+    transform: translateX(var(--cat-travel, calc(100vw - 100px))) scaleX(1);
   }
   98% {
     transform: translateX(0) scaleX(1);
@@ -74,26 +74,13 @@
 }
 
 .cat-mascot {
+  --cat-travel: calc(100vw - 80px);
   animation: cat-wander 60s ease-in-out infinite;
 }
 
-@media (max-width: 640px) {
-  @keyframes cat-wander {
-    0% {
-      transform: translateX(0) scaleX(-1);
-    }
-    48% {
-      transform: translateX(calc(100vw - 80px)) scaleX(-1);
-    }
-    50% {
-      transform: translateX(calc(100vw - 80px)) scaleX(1);
-    }
-    98% {
-      transform: translateX(0) scaleX(1);
-    }
-    100% {
-      transform: translateX(0) scaleX(-1);
-    }
+@media (min-width: 641px) {
+  .cat-mascot {
+    --cat-travel: calc(100vw - 100px);
   }
 }
 
